@@ -26,109 +26,109 @@ extension = "gcode";
 // Note you can modify these values in the post-processor configuration window :
 // Right click "Setups" or a given setup, click "Post-process", then go to the "Program Settings" section of the window that appears
 propertyDefinitions = {
-  writeMachine:{
-    title:"Write machine",
-    description:"Output the machine settings in the header of the code.",
-    group:0,
-    type:"boolean",
+  writeMachine: {
+    title: "Write machine",
+    description: "Output the machine settings in the header of the code.",
+    group: 0,
+    type: "boolean",
     default: true
   },
-  writeTools:{
-    title:"Write tool list",
-    description:"Output a tool list in the header of the code.",
-    group:0,
-    type:"boolean",
-    default:true
-  },
-  writePart:{
-    title:"Write part",
-    description:"Output information about the size and position of the workpiece and fixture in the header of the code ( as uppermost and lowermost corners of the bounding boxes )",
-    group:0,
-    type:"boolean",
+  writeTools: {
+    title: "Write tool list",
+    description: "Output a tool list in the header of the code.",
+    group: 0,
+    type: "boolean",
     default: true
   },
-  showSequenceNumbers:{
-    title:"Use sequence numbers",
-    description:"Use sequence numbers for each block of outputted code ( not recommended for Smoothie ).",
-    group:1,
-    type:"boolean",
+  writePart: {
+    title: "Write part",
+    description: "Output information about the size and position of the workpiece and fixture in the header of the code ( as uppermost and lowermost corners of the bounding boxes )",
+    group: 0,
+    type: "boolean",
+    default: true
+  },
+  showSequenceNumbers: {
+    title: "Use sequence numbers",
+    description: "Use sequence numbers for each block of outputted code ( not recommended for Smoothie ).",
+    group: 1,
+    type: "boolean",
     default: false
   },
-  sequenceNumberStart:{
-    title:"Start sequence number",
-    description:"The number at which to start the sequence numbers.",
-    group:1,
-    type:"integer",
+  sequenceNumberStart: {
+    title: "Start sequence number",
+    description: "The number at which to start the sequence numbers.",
+    group: 1,
+    type: "integer",
     default: 10
   },
-  sequenceNumberIncrement:{
-    title:"Sequence number increment",
-    description:"The amount by which the sequence number is incremented by in each block.",
-    group:1,
-    type:"integer",
+  sequenceNumberIncrement: {
+    title: "Sequence number increment",
+    description: "The amount by which the sequence number is incremented by in each block.",
+    group: 1,
+    type: "integer",
     default: 1
   },
-  useCycles:{
-    title:"Use cycles",
-    description:"Specifies if canned drilling cycles should be used.",
-    type:"boolean",
+  useCycles: {
+    title: "Use cycles",
+    description: "Specifies if canned drilling cycles should be used.",
+    type: "boolean",
     default: false
   },
-  laserToolNumber:{
-    title:"Laser tool number",
-    description:"Sets the tool number used for laser cutting.",
-    type:"boolean",
+  laserToolNumber: {
+    title: "Laser tool number",
+    description: "Sets the tool number used for laser cutting.",
+    type: "boolean",
     default: 1
   },
-  laserEtchPower:{
-    title:"Laser etch power",
-    description:"Sets the laser etch power.",
-    type:"number",
+  laserEtchPower: {
+    title: "Laser etch power",
+    description: "Sets the laser etch power.",
+    type: "number",
     default: 0.1
   },
-  laserPower:{
-    title:"Laser power",
-    description:"Sets the laser power.",
-    type:"number",
+  laserPower: {
+    title: "Laser power",
+    description: "Sets the laser power.",
+    type: "number",
     default: 1
   },
-  useLaserM3M5:{
-    title:"Use Laser M3/M5",
-    description:"Enable to activate the laser using M3/M5.",
-    type:"boolean",
+  useLaserM3M5: {
+    title: "Use Laser M3/M5",
+    description: "Enable to activate the laser using M3/M5.",
+    type: "boolean",
     default: true
   },
-  allowHelicalMoves:{
-    title:"Allow Helical Moves",
+  allowHelicalMoves: {
+    title: "Allow Helical Moves",
     description: "Whether helical moves are output normally, or cut into as many linear segments as necessary",
-    type:"boolean",
-    default:true
-  },
-  doToolChangeInPostProcessor:{
-    title:"Do tool change in Post-Processor",
-    description:"Whether the details of the tool change procedures is setup in the Post-Processor itself ( supported ) or on-board Smoothieboard ( unsupported as of mid-2018, see smoothieware.org )",
     type: "boolean",
-    default:true
+    default: true
   },
-  retractBeforeSection:{
-    title:"Retract before section",
-    description:"Whether to retract up to a safe Z height before doing a new section",
+  doToolChangeInPostProcessor: {
+    title: "Do tool change in Post-Processor",
+    description: "Whether the details of the tool change procedures is setup in the Post-Processor itself ( supported ) or on-board Smoothieboard ( unsupported as of mid-2018, see smoothieware.org )",
+    type: "boolean",
+    default: true
+  },
+  retractBeforeSection: {
+    title: "Retract before section",
+    description: "Whether to retract up to a safe Z height before doing a new section",
     type: "boolean",
     default: false
   },
-  initialToolDump:{
+  initialToolDump: {
     title: "Initial tool dump",
     description: "Whether to open the tool grabbing clamp above a safe position before starting the program, in case a tool was unsafely left in the spindle",
     type: "boolean",
     default: true
   },
-  initialHomeSeek:{
+  initialHomeSeek: {
     title: "Initial home seek",
     description: "Whether to seek home ($H command), ie search for the endstops for each axis, before starting the program, thus ensuring machine position is known for sure",
     type: "boolean",
     default: true
   },
-  initialSetZero:{
+  initialSetZero: {
     title: "Initial set zero",
     description: "Whether to set the position at which the program starts as the zero position for the WCS. This allows for easy/fast origin setting by simply moving to the desired start point then starting the program.",
     type: "boolean",
@@ -138,8 +138,8 @@ propertyDefinitions = {
 
 // Grab the default values for all properties and store the way Fusion likes
 var properties = {};
-for( var property in propertyDefinitions ){
-  if( propertyDefinitions.hasOwnProperty(property)){ properties[property] = propertyDefinitions[property].default; }
+for (var property in propertyDefinitions) {
+  if (propertyDefinitions.hasOwnProperty(property)) { properties[property] = propertyDefinitions[property].default; }
 }
 
 // Do we allow helical moves or not
@@ -149,7 +149,7 @@ allowHelicalMoves = properties.allowHelicalMoves;
 setCodePage("ascii");
 
 // Smoothie can control CNC milling ( vertical or router ) as well as laser cutters, waterjets and plasma cutters
-capabilities = CAPABILITY_MILLING | CAPABILITY_JET;
+capabilities = CAPABILITY_MILLING | CAPABILITY_JET | CAPABILITY_LASER;
 tolerance = spatial(0.002, MM);
 
 // Define some resolutions
@@ -164,36 +164,36 @@ highFeedrate = (unit == IN) ? 100 : 1000;
 // Map of coolant commands
 var mapCoolantTable = new Table(
   [107, 106, 106, 106, 106, 106, 106, 106, 106],
-  {initial:COOLANT_OFF, force:true},
+  { initial: COOLANT_OFF, force: true },
   "Invalid coolant mode"
 );
 
 // Formatting tools
 // G and M Gcode formatting
-var gFormat = createFormat({prefix:"G", decimals:0});
-var mFormat = createFormat({prefix:"M", decimals:0});
+var gFormat = createFormat({ prefix: "G", decimals: 0 });
+var mFormat = createFormat({ prefix: "M", decimals: 0 });
 // Parameter formatting
-var xyzFormat = createFormat({decimals:(unit == MM ? 3 : 4)});
-var feedFormat = createFormat({decimals:(unit == MM ? 2 : 3)});
-var toolFormat = createFormat({decimals:0});
-var rpmFormat = createFormat({decimals:0});
-var powerFormat = createFormat({decimals:2});
-var secFormat = createFormat({decimals:3, forceDecimal:true}); // seconds - range 0.001-1000
-var taperFormat = createFormat({decimals:1, scale:DEG});
+var xyzFormat = createFormat({ decimals: (unit == MM ? 3 : 4) });
+var feedFormat = createFormat({ decimals: (unit == MM ? 2 : 3) });
+var toolFormat = createFormat({ decimals: 0 });
+var rpmFormat = createFormat({ decimals: 0 });
+var powerFormat = createFormat({ decimals: 2 });
+var secFormat = createFormat({ decimals: 3, forceDecimal: true }); // seconds - range 0.001-1000
+var taperFormat = createFormat({ decimals: 1, scale: DEG });
 // Gcode output utilities
-var xOutput = createVariable({prefix:"X"}, xyzFormat);
-var yOutput = createVariable({prefix:"Y"}, xyzFormat);
-var zOutput = createVariable({prefix:"Z"}, xyzFormat);
-var feedOutput = createVariable({prefix:"F"}, feedFormat);
-var sOutput = createVariable({prefix:"S", force:false}, rpmFormat);
-var powerOutput = createVariable({prefix:"S", force:false}, powerFormat);
+var xOutput = createVariable({ prefix: "X" }, xyzFormat);
+var yOutput = createVariable({ prefix: "Y" }, xyzFormat);
+var zOutput = createVariable({ prefix: "Z" }, xyzFormat);
+var feedOutput = createVariable({ prefix: "F" }, feedFormat);
+var sOutput = createVariable({ prefix: "S", force: false }, rpmFormat);
+var powerOutput = createVariable({ prefix: "S", force: false }, powerFormat);
 // Circular output
-var iOutput = createReferenceVariable({prefix:"I"}, xyzFormat);
-var jOutput = createReferenceVariable({prefix:"J"}, xyzFormat);
-var kOutput = createReferenceVariable({prefix:"K"}, xyzFormat);
+var iOutput = createReferenceVariable({ prefix: "I" }, xyzFormat);
+var jOutput = createReferenceVariable({ prefix: "J" }, xyzFormat);
+var kOutput = createReferenceVariable({ prefix: "K" }, xyzFormat);
 // Misc utilities
-var gMotionModal = createModal({force:true}, gFormat); // modal group 1 // G0-G3, ...
-var gPlaneModal = createModal({onchange:function () {gMotionModal.reset();}}, gFormat); // modal group 2 // G17-19
+var gMotionModal = createModal({ force: true }, gFormat); // modal group 1 // G0-G3, ...
+var gPlaneModal = createModal({ onchange: function () { gMotionModal.reset(); } }, gFormat); // modal group 2 // G17-19
 var gAbsIncModal = createModal({}, gFormat); // modal group 3 // G90-91
 var gUnitModal = createModal({}, gFormat); // modal group 6 // G20-21
 var gCycleModal = createModal({}, gFormat); // modal group 9 // G81, ...
@@ -224,8 +224,8 @@ function onOpen() {
   var description = machineConfiguration.getDescription();
   if (properties.writeMachine && (vendor || model || description)) {
     writeComment(localize("Machine information :"));
-    if (vendor     ) { writeComment("  " + localize("vendor"     ) + ": " + vendor); }
-    if (model      ) { writeComment("  " + localize("model"      ) + ": " + model);}
+    if (vendor) { writeComment("  " + localize("vendor") + ": " + vendor); }
+    if (model) { writeComment("  " + localize("model") + ": " + model); }
     if (description) { writeComment("  " + localize("description") + ": " + description); }
   }
 
@@ -251,8 +251,8 @@ function onOpen() {
       for (var i = 0; i < tools.getNumberOfTools(); ++i) {
         var tool = tools.getTool(i);
         var comment = "  Tool T" + toolFormat.format(tool.number) + " " +
-        "Diameter D=" + xyzFormat.format(tool.diameter) + " " +
-        localize("CornerRadius CR") + "=" + xyzFormat.format(tool.cornerRadius);
+          "Diameter D=" + xyzFormat.format(tool.diameter) + " " +
+          localize("CornerRadius CR") + "=" + xyzFormat.format(tool.cornerRadius);
         if ((tool.taperAngle > 0) && (tool.taperAngle < Math.PI)) {
           comment += " " + localize("TAPER") + "=" + taperFormat.format(tool.taperAngle) + localize("deg");
         }
@@ -269,32 +269,32 @@ function onOpen() {
   var workpiece = getWorkpiece();
   var fixture = getFixture();
   var zHeight = 0;
-  if( workpiece != undefined ){
+  if (workpiece != undefined) {
     zHeight += Math.abs(workpiece.upper.z - workpiece.lower.z);
-    if( properties.writePart ){ writeComment("With workpiece zHeight is " + zHeight); }
+    if (properties.writePart) { writeComment("With workpiece zHeight is " + zHeight); }
   }
-  if( fixture != undefined ){
+  if (fixture != undefined) {
     zHeight += Math.abs(fixture.upper.z - fixture.lower.z);
-    if( properties.writePart ){ writeComment("With fixture zHeight is " + zHeight); }
+    if (properties.writePart) { writeComment("With fixture zHeight is " + zHeight); }
   }
 
   // Output part information
-  if( properties.writePart ){
+  if (properties.writePart) {
     // Output workpiece information
-    if( workpiece != undefined ){
+    if (workpiece != undefined) {
       writeComment("Workpiece information: ");
       writeComment("  Lower corner of Workpiece: " + workpiece.lower.toString());
       writeComment("  Higher corner of Workpiece: " + workpiece.upper.toString());
-    }else{
+    } else {
       writeComment("No workpiece found");
     }
 
     // Output fixture information
-    if( fixture != undefined ){
+    if (fixture != undefined) {
       writeComment("Fixture information: ");
       writeComment("  Lower corner of Fixture: " + fixture.lower.toString());
       writeComment("  Higher corner of Fixture: " + fixture.upper.toString());
-    }else{
+    } else {
       writeComment("No fixture found");
     }
 
@@ -320,27 +320,27 @@ function onOpen() {
   // Set up units
   switch (unit) {
     case IN:
-    writeBlock(gUnitModal.format(20)); // ( http://smoothieware.org/g20 )
-    break;
+      writeBlock(gUnitModal.format(20)); // ( http://smoothieware.org/g20 )
+      break;
     case MM:
-    writeBlock(gUnitModal.format(21)); // ( http://smoothieware.org/g21 )
-    break;
+      writeBlock(gUnitModal.format(21)); // ( http://smoothieware.org/g21 )
+      break;
   }
 
   // If configured to do so, set the current position as the WCS zero
-  if( properties.initialSetZero ){
+  if (properties.initialSetZero) {
     writeComment("Position at beginning of program becomes the zero for WCS");
     writeBlock(gFormat.format(10), "L20", "P1", "X0", "Y0", "Z0");
   }
 
   // If configured to do so, seek home at program start
-  if( properties.initialHomeSeek ){
+  if (properties.initialHomeSeek) {
     writeComment("Seek home at program start");
     writeln("$H");
   }
 
   // If configured to do so, dump the tool in the spindle in case one was left there by accident
-  if( properties.initialToolDump ){
+  if (properties.initialToolDump) {
     // Go to a safe Z height, safe XY place, in WCS, and dump the tool
     dumpTool();
   }
@@ -367,9 +367,9 @@ function onSection() {
     }
 
     // Retract to safe plane ( as defined by safeZHeight )
-    if( properties.retractBeforeSection ){
+    if (properties.retractBeforeSection) {
       retracted = true;
-      writeBlock(gFormat.format(53), gFormat.format(0), "Z" + xyzFormat.format(machineConfiguration.getRetractPlane()), "F" + feedFormat.format(machineConfiguration.getAxisZ().getMaximumFeed()) );
+      writeBlock(gFormat.format(53), gFormat.format(0), "Z" + xyzFormat.format(machineConfiguration.getRetractPlane()), "F" + feedFormat.format(machineConfiguration.getAxisZ().getMaximumFeed()));
       writeBlock(gAbsIncModal.format(90));
       zOutput.reset();
     }
@@ -381,16 +381,16 @@ function onSection() {
 
   // Display current section's information
   writeComment("Section number: " + currentSection.getId());
-  writeComment("  Tool " + tool.getNumber() + ": " + tool.getComment() );
+  writeComment("  Tool " + tool.getNumber() + ": " + tool.getComment());
 
   // Display comments for this operation
   if (hasParameter("operation-comment")) {
     var comment = getParameter("operation-comment");
-    if (comment) {  writeComment(comment); }
+    if (comment) { writeComment(comment); }
   }
 
   // If we need to insert a tool call
-  if ( insertToolCall && currentSection.type != TYPE_JET ) {
+  if (insertToolCall && currentSection.type != TYPE_JET) {
 
     retracted = true;
 
@@ -402,18 +402,18 @@ function onSection() {
     if (tool.number > machineConfiguration.getNumberOfTools()) { warning(localize("Tool number (" + tool.number + " ) exceeds maximum configured number of tools ( " + machineConfiguration.getNumberOfTools() + "), see machine configuration")); }
 
     // Whether we should do the tool change procedure in the Post-Processor, or let Smoothie handle it
-    if( properties.doToolChangeInPostProcessor ){
+    if (properties.doToolChangeInPostProcessor) {
       // Do a tool change step by step
       // If this is the first section, we don't need to release a previous tool
-      if( isFirstSection() ){
+      if (isFirstSection()) {
         writeComment("No need to release tool for first section ( " + currentSection.getId() + " )");
         writeComment("WARNING: No tool must be held in the spindle before starting this job");
 
         // Else we need to release the tool from the previous section
-      }else{
+      } else {
         // Get the tool in the previous section
-        var previous_tool = getSection(currentSection.getId()-1).getTool();
-        writeComment("Releasing tool " + previous_tool.number + " after it was used in section " + (currentSection.getId()-1) );
+        var previous_tool = getSection(currentSection.getId() - 1).getTool();
+        writeComment("Releasing tool " + previous_tool.number + " after it was used in section " + (currentSection.getId() - 1));
 
         // Release the tool
         releaseTool(previous_tool);
@@ -428,7 +428,7 @@ function onSection() {
       grabTool(tool);
       writeComment("Tool " + tool.number + " was grabbed");
 
-    }else{
+    } else {
       // Ask machine to change tool
       writeBlock("T" + toolFormat.format(tool.number));
     }
@@ -460,23 +460,23 @@ function onSection() {
   if (currentSection.type == TYPE_JET) {
     switch (tool.type) {
       case TOOL_LASER_CUTTER:
-      break;
+        break;
       default:
-      error(localize("The CNC does not support the required tool/process. Only laser cutting is supported."));
-      return;
+        error(localize("The CNC does not support the required tool/process. Only laser cutting is supported."));
+        return;
     }
 
     var toolNumber = properties.laserToolNumber; // laser
     switch (currentSection.jetMode) {
       case JET_MODE_THROUGH:
-      break;
+        break;
       case JET_MODE_ETCHING:
-      break;
+        break;
       case JET_MODE_VAPORIZE:
-      break;
+        break;
       default:
-      error(localize("Unsupported cutting mode."));
-      return;
+        error(localize("Unsupported cutting mode."));
+        return;
     }
 
     // Output Tool change word
@@ -500,11 +500,11 @@ function onClose() {
   onCommand(COMMAND_COOLANT_OFF);
 
   //if (properties.useLaserM3M5 && (currentSection.type == TYPE_JET) && (tool.type == TOOL_LASER_CUTTER)) {
-    writeBlock(mFormat.format(5)); // deactivate laser or spindle
+  writeBlock(mFormat.format(5)); // deactivate laser or spindle
   //}
 
   // Release tool after last section
-  writeComment("Releasing tool " + tool.number + " at end of program after section " + (currentSection.getId()) );
+  writeComment("Releasing tool " + tool.number + " at end of program after section " + (currentSection.getId()));
 
   // Release the tool
   releaseTool(tool);
@@ -512,7 +512,7 @@ function onClose() {
 
   // Retract to safe plane ( as defined by safeZHeight )
   retracted = true;
-  writeBlock(gFormat.format(53), gFormat.format(0), "Z" + xyzFormat.format(machineConfiguration.getRetractPlane()), "F" + feedFormat.format(machineConfiguration.getAxisZ().getMaximumFeed()) );
+  writeBlock(gFormat.format(53), gFormat.format(0), "Z" + xyzFormat.format(machineConfiguration.getRetractPlane()), "F" + feedFormat.format(machineConfiguration.getAxisZ().getMaximumFeed()));
   writeBlock(gAbsIncModal.format(90));
   zOutput.reset();
 
@@ -526,11 +526,11 @@ function onClose() {
 }
 
 // Grab a tool from the tool rack
-function grabTool(tool){
+function grabTool(tool) {
 
   // Open the seal valve
   writeBlock(mFormat.format(1001));
-  
+
   // Open the dust removal valve
   writeBlock(mFormat.format(1007));
 
@@ -538,7 +538,7 @@ function grabTool(tool){
   writeBlock(gFormat.format(53), gFormat.format(0), "Z" + xyzFormat.format(machineConfiguration.getRetractPlane()), "F" + feedFormat.format(machineConfiguration.getAxisZ().getMaximumFeed())); // TODO: Make configurable
 
   // Go in front of the tool in X ( machine coordinates )
-  writeBlock(gFormat.format(53), gFormat.format(0), "X" + Math.round((96-65) + Math.round(xyzFormat.format(tool.number * 65))), "F" + feedFormat.format(machineConfiguration.getAxisX().getMaximumFeed())); // TODO: Make configurable
+  writeBlock(gFormat.format(53), gFormat.format(0), "X" + Math.round((96 - 65) + Math.round(xyzFormat.format(tool.number * 65))), "F" + feedFormat.format(machineConfiguration.getAxisX().getMaximumFeed())); // TODO: Make configurable
 
   // Go above the tool in Y ( machine coordinates )
   writeBlock(gFormat.format(53), gFormat.format(0), "Y" + xyzFormat.format(968), "F" + feedFormat.format(machineConfiguration.getAxisY().getMaximumFeed())); // TODO: Make configurable
@@ -566,9 +566,9 @@ function grabTool(tool){
   // Close the dust valve and the seal valve
   writeBlock(mFormat.format(1008));
   writeBlock(mFormat.format(1002));
-  
+
   // Move out of the tool holder in Y so we can then go up with the tool grabbed
-  writeBlock(gFormat.format(53), gFormat.format(0), "Y" + xyzFormat.format(968-30), "F" + feedFormat.format(machineConfiguration.getAxisY().getMaximumFeed())); // TODO: Make configurable
+  writeBlock(gFormat.format(53), gFormat.format(0), "Y" + xyzFormat.format(968 - 30), "F" + feedFormat.format(machineConfiguration.getAxisY().getMaximumFeed())); // TODO: Make configurable
 
   // Go to the Z safe height ( machine coordinates )
   writeBlock(gFormat.format(53), gFormat.format(0), "Z" + xyzFormat.format(machineConfiguration.getRetractPlane()), "F" + feedFormat.format(machineConfiguration.getAxisZ().getMaximumFeed())); // TODO: Make configurable
@@ -576,11 +576,11 @@ function grabTool(tool){
 }
 
 // Release a tool to the tool rack
-function releaseTool(tool){
+function releaseTool(tool) {
 
   // Open the seal valve
   writeBlock(mFormat.format(1001));
-  
+
   // Open the dust removal valve
   writeBlock(mFormat.format(1007));
 
@@ -588,10 +588,10 @@ function releaseTool(tool){
   writeBlock(gFormat.format(53), gFormat.format(0), "Z" + xyzFormat.format(machineConfiguration.getRetractPlane()), "F" + feedFormat.format(machineConfiguration.getAxisZ().getMaximumFeed())); // TODO: Make configurable
 
   // Go in front of the tool in X ( machine coordinates )
-  writeBlock(gFormat.format(53), gFormat.format(0), "X" + Math.round((96-65) + Math.round(xyzFormat.format(tool.number * 65))), "F" + feedFormat.format(machineConfiguration.getAxisX().getMaximumFeed())); // TODO: Make configurable
+  writeBlock(gFormat.format(53), gFormat.format(0), "X" + Math.round((96 - 65) + Math.round(xyzFormat.format(tool.number * 65))), "F" + feedFormat.format(machineConfiguration.getAxisX().getMaximumFeed())); // TODO: Make configurable
 
   // Go above the tool in Y ( machine coordinates )
-  writeBlock(gFormat.format(53), gFormat.format(0), "Y" + xyzFormat.format(968-30), "F" + feedFormat.format(machineConfiguration.getAxisY().getMaximumFeed())); // TODO: Make configurable
+  writeBlock(gFormat.format(53), gFormat.format(0), "Y" + xyzFormat.format(968 - 30), "F" + feedFormat.format(machineConfiguration.getAxisY().getMaximumFeed())); // TODO: Make configurable
 
   // Align with the tool holder in Z ( machine coordinates )
   writeBlock(gFormat.format(53), gFormat.format(0), "Z" + xyzFormat.format(92), "F" + feedFormat.format(machineConfiguration.getAxisZ().getMaximumFeed())); // TODO: Make configurable
@@ -612,9 +612,9 @@ function releaseTool(tool){
   var zstart = 92;
   var ztop = machineConfiguration.getRetractPlane();
   // G91 G2 J2 Z1 G90
-  for( var h = 0.5; h <= 20 ; h++){
-    var z = 0-(zstart+(h*3));
-    writeBlock(gFormat.format(91), gPlaneModal.format(17), gMotionModal.format(2), "Z" + xyzFormat.format(0.5), "J" + xyzFormat.format(h/20), gFormat.format(90));
+  for (var h = 0.5; h <= 20; h++) {
+    var z = 0 - (zstart + (h * 3));
+    writeBlock(gFormat.format(91), gPlaneModal.format(17), gMotionModal.format(2), "Z" + xyzFormat.format(0.5), "J" + xyzFormat.format(h / 20), gFormat.format(90));
   }
   writeBlock(gFormat.format(53), gMotionModal.format(0), "Z" + xyzFormat.format(ztop), "F" + feedFormat.format(zfeed));
   writeComment("Stop tool up procedure");
@@ -635,11 +635,11 @@ function releaseTool(tool){
 
 
 // Release a tool to the tool dumping zone
-function dumpTool(){
+function dumpTool() {
 
   // Open the seal valve
   writeBlock(mFormat.format(1001));
-  
+
   // Open the dust removal valve
   writeBlock(mFormat.format(1007));
 
@@ -647,7 +647,7 @@ function dumpTool(){
   writeBlock(gFormat.format(53), gFormat.format(0), "Z" + xyzFormat.format(machineConfiguration.getRetractPlane()), "F" + feedFormat.format(machineConfiguration.getAxisZ().getMaximumFeed()));
 
   // Go to a safe dumping place
-  writeBlock(gFormat.format(53), gFormat.format(0), "X" + xyzFormat.format(0), "Y" + xyzFormat.format(0), "F" + feedFormat.format(Math.min(machineConfiguration.getAxisX().getMaximumFeed(),machineConfiguration.getAxisY().getMaximumFeed()))); // TODO: Make configurable
+  writeBlock(gFormat.format(53), gFormat.format(0), "X" + xyzFormat.format(0), "Y" + xyzFormat.format(0), "F" + feedFormat.format(Math.min(machineConfiguration.getAxisX().getMaximumFeed(), machineConfiguration.getAxisY().getMaximumFeed()))); // TODO: Make configurable
 
   // Turn the air on to open the tool clamp
   writeBlock(mFormat.format(1003));
@@ -682,7 +682,7 @@ function onCycle() {
 
 function getCommonCycle(x, y, z, r) {
   forceXYZ();
-  return [xOutput.format(x), yOutput.format(y),zOutput.format(z),"R" + xyzFormat.format(r)];
+  return [xOutput.format(x), yOutput.format(y), zOutput.format(z), "R" + xyzFormat.format(r)];
 }
 
 function onCyclePoint(x, y, z) {
@@ -706,45 +706,45 @@ function onCyclePoint(x, y, z) {
 
     switch (cycleType) {
       case "drilling":
-      writeBlock(
-        gRetractModal.format(98), gAbsIncModal.format(90), gCycleModal.format(81),
-        getCommonCycle(x, y, z, cycle.retract),
-        feedOutput.format(F)
-      );
-      break;
-      case "counter-boring":
-      if (P > 0) {
-        writeBlock(
-          gRetractModal.format(98), gAbsIncModal.format(90), gCycleModal.format(82),
-          getCommonCycle(x, y, z, cycle.retract),
-          "S" + secFormat.format(P), // not optional
-          feedOutput.format(F)
-        );
-      } else {
         writeBlock(
           gRetractModal.format(98), gAbsIncModal.format(90), gCycleModal.format(81),
           getCommonCycle(x, y, z, cycle.retract),
           feedOutput.format(F)
         );
-      }
-      break;
+        break;
+      case "counter-boring":
+        if (P > 0) {
+          writeBlock(
+            gRetractModal.format(98), gAbsIncModal.format(90), gCycleModal.format(82),
+            getCommonCycle(x, y, z, cycle.retract),
+            "S" + secFormat.format(P), // not optional
+            feedOutput.format(F)
+          );
+        } else {
+          writeBlock(
+            gRetractModal.format(98), gAbsIncModal.format(90), gCycleModal.format(81),
+            getCommonCycle(x, y, z, cycle.retract),
+            feedOutput.format(F)
+          );
+        }
+        break;
       case "chip-breaking":
-      expandCyclePoint(x, y, z);
-      break;
-      case "deep-drilling":
-      if (P > 0) {
         expandCyclePoint(x, y, z);
-      } else {
-        writeBlock(
-          gRetractModal.format(98), gAbsIncModal.format(90), gCycleModal.format(83),
-          getCommonCycle(x, y, z, cycle.retract),
-          "Q" + xyzFormat.format(cycle.incrementalDepth),
-          feedOutput.format(F)
-        );
-      }
-      break;
+        break;
+      case "deep-drilling":
+        if (P > 0) {
+          expandCyclePoint(x, y, z);
+        } else {
+          writeBlock(
+            gRetractModal.format(98), gAbsIncModal.format(90), gCycleModal.format(83),
+            getCommonCycle(x, y, z, cycle.retract),
+            "Q" + xyzFormat.format(cycle.incrementalDepth),
+            feedOutput.format(F)
+          );
+        }
+        break;
       default:
-      expandCyclePoint(x, y, z);
+        expandCyclePoint(x, y, z);
     }
   } else {
     if (cycleExpanded) {
@@ -808,38 +808,38 @@ function onParameter(name, value) {
 
 
 var mapCommand = {
-  COMMAND_STOP:0,
-  COMMAND_SPINDLE_CLOCKWISE:3,
-  COMMAND_STOP_SPINDLE:5
+  COMMAND_STOP: 0,
+  COMMAND_SPINDLE_CLOCKWISE: 3,
+  COMMAND_STOP_SPINDLE: 5
 };
 
 function onCommand(command) {
   switch (command) {
     case COMMAND_START_SPINDLE:
-    if (!tool.clockwise) {
-      error(localize("CNC does not support CCW spindle rotation."));
+      if (!tool.clockwise) {
+        error(localize("CNC does not support CCW spindle rotation."));
+        return;
+      }
+      onCommand(tool.clockwise ? COMMAND_SPINDLE_CLOCKWISE : COMMAND_SPINDLE_COUNTERCLOCKWISE);
       return;
-    }
-    onCommand(tool.clockwise ? COMMAND_SPINDLE_CLOCKWISE : COMMAND_SPINDLE_COUNTERCLOCKWISE);
-    return;
     case COMMAND_POWER_ON:
-    return;
+      return;
     case COMMAND_POWER_OFF:
-    return;
+      return;
     case COMMAND_COOLANT_ON:
-    writeBlock(mFormat.format(106)); // fan on
-    return;
+      writeBlock(mFormat.format(106)); // fan on
+      return;
     case COMMAND_COOLANT_OFF:
-    writeBlock(mFormat.format(107)); // fan off
-    return;
+      writeBlock(mFormat.format(107)); // fan off
+      return;
     case COMMAND_LOCK_MULTI_AXIS:
-    return;
+      return;
     case COMMAND_UNLOCK_MULTI_AXIS:
-    return;
+      return;
     case COMMAND_BREAK_CONTROL:
-    return;
+      return;
     case COMMAND_TOOL_MEASURE:
-    return;
+      return;
   }
 
   var stringId = getCommandStringId(command);
@@ -889,12 +889,13 @@ function forceAny() {
 function getPower() {
   switch (currentSection.jetMode) {
     case JET_MODE_THROUGH:
-    return properties.laserPower;
+      return properties.laserPower;
     case JET_MODE_ETCHING:
-    return properties.laserEtchPower;
+      return properties.laserEtchPower;
     case JET_MODE_VAPORIZE:
+      return properties.laserPower;
     default:
-    error(localize("Laser cutting mode is not supported."));
+      error(localize("Laser cutting mode is not supported."));
   }
   return 0;
 }
@@ -972,36 +973,36 @@ function onCircular(clockwise, cx, cy, cz, x, y, z, feed) {
     }
     switch (getCircularPlane()) {
       case PLANE_XY:
-      writeBlock(gPlaneModal.format(17), gMotionModal.format(clockwise ? 2 : 3), xOutput.format(x), iOutput.format(cx - start.x, 0), jOutput.format(cy - start.y, 0), feedOutput.format(feed), conditional(currentSection.type == TYPE_JET, powerOutput.format(power ? getPower() : 0)));
-      gMotionModal.reset();
-      break;
+        writeBlock(gPlaneModal.format(17), gMotionModal.format(clockwise ? 2 : 3), xOutput.format(x), iOutput.format(cx - start.x, 0), jOutput.format(cy - start.y, 0), feedOutput.format(feed), conditional(currentSection.type == TYPE_JET, powerOutput.format(power ? getPower() : 0)));
+        gMotionModal.reset();
+        break;
       case PLANE_ZX:
-      writeBlock(gPlaneModal.format(18), gMotionModal.format(clockwise ? 2 : 3), zOutput.format(z), iOutput.format(cx - start.x, 0), kOutput.format(cz - start.z, 0), feedOutput.format(feed), conditional(currentSection.type == TYPE_JET, powerOutput.format(power ? getPower() : 0)));
-      gMotionModal.reset();
-      break;
+        writeBlock(gPlaneModal.format(18), gMotionModal.format(clockwise ? 2 : 3), zOutput.format(z), iOutput.format(cx - start.x, 0), kOutput.format(cz - start.z, 0), feedOutput.format(feed), conditional(currentSection.type == TYPE_JET, powerOutput.format(power ? getPower() : 0)));
+        gMotionModal.reset();
+        break;
       case PLANE_YZ:
-      writeBlock(gPlaneModal.format(19), gMotionModal.format(clockwise ? 2 : 3), yOutput.format(y), jOutput.format(cy - start.y, 0), kOutput.format(cz - start.z, 0), feedOutput.format(feed), conditional(currentSection.type == TYPE_JET, powerOutput.format(power ? getPower() : 0)));
-      gMotionModal.reset();
-      break;
+        writeBlock(gPlaneModal.format(19), gMotionModal.format(clockwise ? 2 : 3), yOutput.format(y), jOutput.format(cy - start.y, 0), kOutput.format(cz - start.z, 0), feedOutput.format(feed), conditional(currentSection.type == TYPE_JET, powerOutput.format(power ? getPower() : 0)));
+        gMotionModal.reset();
+        break;
       default:
-      linearize(tolerance);
+        linearize(tolerance);
     }
   } else {
     switch (getCircularPlane()) {
       case PLANE_XY:
-      writeBlock(gPlaneModal.format(17), gMotionModal.format(clockwise ? 2 : 3), xOutput.format(x), yOutput.format(y), zOutput.format(z), iOutput.format(cx - start.x, 0), jOutput.format(cy - start.y, 0), feedOutput.format(feed), conditional(currentSection.type == TYPE_JET, powerOutput.format(power ? getPower() : 0)));
-      gMotionModal.reset();
-      break;
+        writeBlock(gPlaneModal.format(17), gMotionModal.format(clockwise ? 2 : 3), xOutput.format(x), yOutput.format(y), zOutput.format(z), iOutput.format(cx - start.x, 0), jOutput.format(cy - start.y, 0), feedOutput.format(feed), conditional(currentSection.type == TYPE_JET, powerOutput.format(power ? getPower() : 0)));
+        gMotionModal.reset();
+        break;
       case PLANE_ZX:
-      writeBlock(gPlaneModal.format(18), gMotionModal.format(clockwise ? 2 : 3), xOutput.format(x), yOutput.format(y), zOutput.format(z), iOutput.format(cx - start.x, 0), kOutput.format(cz - start.z, 0), feedOutput.format(feed), conditional(currentSection.type == TYPE_JET, powerOutput.format(power ? getPower() : 0)));
-      gMotionModal.reset();
-      break;
+        writeBlock(gPlaneModal.format(18), gMotionModal.format(clockwise ? 2 : 3), xOutput.format(x), yOutput.format(y), zOutput.format(z), iOutput.format(cx - start.x, 0), kOutput.format(cz - start.z, 0), feedOutput.format(feed), conditional(currentSection.type == TYPE_JET, powerOutput.format(power ? getPower() : 0)));
+        gMotionModal.reset();
+        break;
       case PLANE_YZ:
-      writeBlock(gPlaneModal.format(19), gMotionModal.format(clockwise ? 2 : 3), xOutput.format(x), yOutput.format(y), zOutput.format(z), jOutput.format(cy - start.y, 0), kOutput.format(cz - start.z, 0), feedOutput.format(feed), conditional(currentSection.type == TYPE_JET, powerOutput.format(power ? getPower() : 0)));
-      gMotionModal.reset();
-      break;
+        writeBlock(gPlaneModal.format(19), gMotionModal.format(clockwise ? 2 : 3), xOutput.format(x), yOutput.format(y), zOutput.format(z), jOutput.format(cy - start.y, 0), kOutput.format(cz - start.z, 0), feedOutput.format(feed), conditional(currentSection.type == TYPE_JET, powerOutput.format(power ? getPower() : 0)));
+        gMotionModal.reset();
+        break;
       default:
-      linearize(tolerance);
+        linearize(tolerance);
     }
   }
 }
